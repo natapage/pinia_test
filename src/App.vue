@@ -1,5 +1,6 @@
 <script setup>
 import Movie from "./components/Movie.vue";
+import SearchView from "./components/SearchView.vue";
 import { useMovieStore } from "./stores/MovieStore";
 
 const movieStore = useMovieStore();
@@ -41,7 +42,9 @@ const movieStore = useMovieStore();
         :movie="movie"
       />
     </div>
-    <div class="search" v-else>Search</div>
+    <div class="search" v-else>
+      <search-view></search-view>
+    </div>
   </main>
 </template>
 

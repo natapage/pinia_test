@@ -9,6 +9,11 @@ const props = defineProps({
     required: true,
     default: () => {},
   },
+  isSearch: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 </script>
 
@@ -24,12 +29,12 @@ const props = defineProps({
         {{ movie.original_title }} ({{ movie.release_date }})
       </div>
       <span class="movie-overview">{{ movie.overview }}</span>
-      <div class="movie-buttons">
+      <div class="movie-buttons" v-if="!isSearch">
         <button
           class="btn movie-buttons-watched"
           @click="movieStore.toggleWatched(movie.id)"
         >
-          <span v-if="movie.isWatched">Watched</span>
+          <span v-if="!movie.isWatched">Watched</span>
           <span v-else>Unwatched</span>
         </button>
         <button
@@ -38,6 +43,9 @@ const props = defineProps({
         >
           Delete
         </button>
+      </div>
+      <div class="movie-buttons" v-else>
+        <button class="btn btn_green">Add</button>
       </div>
     </div>
   </div>
@@ -105,5 +113,12 @@ const props = defineProps({
   margin: 0 10px;
   border-radius: 10px;
   cursor: pointer;
+}
+.btn_green {
+  background: #37df5c;
+}
+
+.btn:hover {
+  opacity: 0.7;
 }
 </style>
