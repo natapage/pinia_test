@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from "vue";
-import { useSearchStore } from "../stores/SearchStore";
+import MovieItem from "./MovieItem.vue";
 import Loader from "./Loader.vue";
-import Movie from "./Movie.vue";
+import { useSearchStore } from "../stores/SearchStore";
+import { ref } from "vue";
 
 const searchStore = useSearchStore();
 const searchMovie = ref("");
@@ -19,13 +19,14 @@ const searchMovie = ref("");
   </form>
   <loader v-if="searchStore.loader"></loader>
   <div v-else>
-    <movie
+    <movie-item
       v-for="movie in searchStore.movies"
       :key="movie.id"
       :movie="movie"
       :isSearch="true"
-    ></movie>
+    ></movie-item>
   </div>
+  <div v-if="!searchStore.isMoviesFound">Нет подходящих фильмов</div>
 </template>
 
 <style lang="css" scoped>

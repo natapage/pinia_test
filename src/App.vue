@@ -1,5 +1,5 @@
 <script setup>
-import Movie from "./components/Movie.vue";
+import MovieItem from "./components/MovieItem.vue";
 import SearchView from "./components/SearchView.vue";
 import { useMovieStore } from "./stores/MovieStore";
 
@@ -29,14 +29,14 @@ const movieStore = useMovieStore();
     <div class="movies" v-if="movieStore.activeTab === 1">
       <div>
         <h3>Watched Movies (count: {{ movieStore.watchedMovies.length }})</h3>
-        <Movie
+        <movie-item
           v-for="movie of movieStore.watchedMovies"
           :key="movie.id"
           :movie="movie"
         />
       </div>
       <h3>All Movies (count: {{ movieStore.totalCountMovies }})</h3>
-      <Movie
+      <movie-item
         v-for="movie of movieStore.movies"
         :key="movie.id"
         :movie="movie"
